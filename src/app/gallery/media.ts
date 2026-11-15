@@ -1,0 +1,18 @@
+export const media = [
+  { src: "/gallery/IMG-20261113-WA0000.jpg", type: "image" },
+  { src: "/gallery/IMG-20261113-WA0002.jpg", type: "image" },
+  { src: "/gallery/IMG-20261113-WA0003.jpg", type: "image" },
+  { src: "/gallery/IMG-20261113-WA0004.jpg", type: "image" },
+  { src: "/gallery/IMG-20261113-WA0005.jpg", type: "image" },
+  { src: "/gallery/IMG-20261113-WA0006.jpg", type: "image" },
+  { src: "/gallery/IMG-20261113-WA0008.jpg", type: "image" },
+  { src: "/gallery/IMG-20261113-WA0009.jpg", type: "image" },
+  { src: "/gallery/IMG-20261113-WA0010.jpg", type: "image" },
+  { src: "/gallery/IMG-20261113-WA0012.jpg", type: "image" },
+  { src: "/gallery/VID-20261113-WA0013.mp4", type: "video" },
+  { src: "/gallery/VID-20261113-WA0014.mp4", type: "video" },
+  { src: "/gallery/VID-20261113-WA0015.mp4", type: "video" },
+  { src: "/gallery/VID-20261113-WA0016.mp4", type: "video" },
+  { src: "/gallery/VID-20261113-WA0017.mp4", type: "video" },
+  { src: "/gallery/VID-20261113-WA0018.mp4", type: "video" },
+];
