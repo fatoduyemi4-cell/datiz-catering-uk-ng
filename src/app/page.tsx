@@ -1,7 +1,7 @@
 import Socials from "@/components/Socials";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
-const services = [{ n: "01", t: "Event Planning", d: "From the first idea to the final detail.", m: "/gallery/IMG-20261113-WA0006.jpg", v: false }, { n: "02", t: "Décor & Styling", d: "Settings that bring your vision to life.", m: "/gallery/IMG-20261113-WA0000.jpg", v: false }, { n: "03", t: "Catering", d: "Food prepared and served for your guests.", m: "/gallery/IMG-20261113-WA0009.jpg", v: false }, { n: "04", t: "Canapés", d: "Elegant bites for receptions and gatherings.", m: "/gallery/VID-20261113-WA0013.mp4", v: true }];
+const services = [{ n: "01", t: "Event Planning", d: "From the first idea to the final detail.", m: "/services/planning.jpg", v: false }, { n: "02", t: "Décor & Styling", d: "Settings that bring your vision to life.", m: "/services/decor.jpg", v: false }, { n: "03", t: "Catering", d: "Food prepared and served for your guests.", m: "/services/catering.jpg", v: false }, { n: "04", t: "Canapés", d: "Elegant bites for receptions and gatherings.", m: "/services/canapes.mp4", v: true }];
 export default function Home() {
   return (
     <main className="min-h-screen bg-datiz-teal text-datiz-ivory">
@@ -13,8 +13,7 @@ export default function Home() {
         </div>
         <div className="absolute inset-x-0 bottom-0 px-6 pb-12 text-center md:pb-16">
           <div className="mx-auto mb-6 h-px w-24 bg-datiz-gold/70"></div>
-          <p className="mb-6 font-serif text-xl italic text-datiz-ivory md:text-2xl">Every detail. A grand impression.</p>
-          <p className="mx-auto mb-10 max-w-2xl text-base font-light leading-relaxed text-datiz-ivory/85 md:text-lg">Crafting unforgettable experiences across the United Kingdom and Nigeria. We handle the food and the setup, so all you have to do is enjoy the day.</p>
+          <p className="mx-auto mb-10 max-w-2xl text-base font-light leading-relaxed text-datiz-ivory/85 md:text-lg">Creating exceptional experiences across the United Kingdom, Nigeria, Europe and the Americas. From exquisite catering to beautifully curated settings, we take care of every detail so you can relax and savour the occasion.</p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/quote" className="btn-primary">Request a Quote</Link>
             <a href="https://wa.me/447738884720" target="_blank" rel="noopener noreferrer" className="btn-outline">Message on WhatsApp</a>
@@ -23,7 +22,7 @@ export default function Home() {
       </section>
       <section className="border-y border-datiz-gold/20 bg-black/20 px-6 py-8">
         <div className="mx-auto grid max-w-5xl gap-6 text-center text-sm uppercase tracking-[0.2em] text-datiz-ivory/70 md:grid-cols-3">
-          <p>United Kingdom &amp; Nigeria</p><p>Open 9:00 AM – 6:00 PM</p><p>2 to 3 weeks notice</p>
+          <p>United Kingdom • Nigeria • Europe • The Americas</p><p>Open 9:00 AM – 6:00 PM</p><p>2 to 3 weeks notice</p>
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-6 py-24">
@@ -46,7 +45,7 @@ export default function Home() {
       </section>
       <footer className="border-t border-datiz-gold/20 px-6 py-12 text-center">
         <p className="mb-2 font-serif text-3xl text-datiz-gold">DATIŽ</p>
-        <p className="text-sm text-datiz-ivory/60">United Kingdom &amp; Nigeria | Open: 9:00 AM – 6:00 PM</p>
+        <p className="text-sm text-datiz-ivory/60">United Kingdom • Nigeria • Europe • The Americas | Open: 9:00 AM – 6:00 PM</p>
         <p className="mt-1 text-sm text-datiz-gold">+44 7738 884720</p>
         <Socials />
       </footer>
