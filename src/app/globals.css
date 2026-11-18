@@ -32,3 +32,13 @@
 .animate-delay-200 { animation-delay: 0.2s; opacity: 0; }
 .animate-delay-400 { animation-delay: 0.4s; opacity: 0; }
 
+/* Gallery animations */
+@keyframes galleryIn { from { opacity: 0; transform: translateY(24px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes lightboxFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lightboxPop { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.1); } }
+.gallery-tile { opacity: 0; animation: galleryIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.lightbox-backdrop { animation: lightboxFade 0.3s ease-out; }
+.lightbox-item { animation: lightboxPop 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.kenburns { animation: kenburns 9s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) { .gallery-tile { opacity: 1; animation: none; } .lightbox-backdrop, .lightbox-item, .kenburns { animation: none; } }
