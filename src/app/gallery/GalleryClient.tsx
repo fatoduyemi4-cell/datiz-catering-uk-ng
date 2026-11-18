@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { media } from "./media";
-const PER_PAGE = 8;
+const PER_PAGE = 6;
 const pill = "rounded-full border border-datiz-gold/50 px-5 py-2 text-sm uppercase tracking-widest text-datiz-gold transition-colors hover:bg-datiz-gold hover:text-datiz-teal disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-datiz-gold";
 export default function GalleryClient() {
   const [page, setPage] = useState(0);
@@ -15,28 +15,38 @@ export default function GalleryClient() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   });
+  const enter = (e: React.MouseEvent<HTMLDivElement>) => { const v = e.currentTarget.querySelector("video"); if (v) v.play().catch(() => {}); };
+  const leave = (e: React.MouseEvent<HTMLDivElement>) => { const v = e.currentTarget.querySelector("video"); if (v) { v.pause(); v.currentTime = 0; } };
   return (
     <div>
-      <div key={page} className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <div key={page} className="film-grid grid grid-cols-2 gap-6 lg:grid-cols-3">
         {visible.map((m, i) => (
-          <button key={m.src} onClick={() => setOpen(start + i)} onMouseEnter={(e) => { e.currentTarget.querySelector("video")?.play(); }} onMouseLeave={(e) => { const v = e.currentTarget.querySelector("video"); if (v) { v.pause(); v.currentTime = 0; } }} style={{ animationDelay: i * 90 + "ms" }} className="gallery-tile group relative aspect-square overflow-hidden border border-datiz-gold/20 bg-black/30 transition-colors hover:border-datiz-gold">
-            {m.type === "video" ? (<video src={m.src} muted loop playsInline preload="metadata" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"></video>) : (<img src={m.src} alt="DATIŽ event" loading="lazy" style={{ animationDuration: 8 + (i % 4) * 2 + "s" }} className="kenburns h-full w-full object-cover" />)}
-            {m.type === "video" && (<span className="absolute inset-0 flex items-center justify-center bg-black/30 text-4xl text-datiz-ivory transition-opacity duration-300 group-hover:opacity-0">▶</span>)}
-            <span className="pointer-events-none absolute inset-0 bg-linear-to-t from-datiz-teal/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
-          </button>
+          <div key={m.src} className="film-tile" style={{ animationDelay: i * 120 + "ms" }} onMouseEnter={enter} onMouseLeave={leave}>
+            <button onClick={() => setOpen(start + i)} className="film-card" aria-label={m.type === "video" ? "Play video" : "View photo"}>
+              <span className="film-media">
+                {m.type === "video" ? (<video src={m.src} muted loop playsInline preload="metadata"></video>) : (<img src={m.src} alt="DATIŽ event" loading="lazy" className="film-ken" style={{ animationDuration: 9 + (i % 3) * 2 + "s" }} />)}
+              </span>
+              <span className="film-vignette"></span>
+              {m.type === "video" && (<span className="film-play"><span>▶</span></span>)}
+              <span className="film-bar film-bar-top"></span>
+              <span className="film-bar film-bar-bottom"><span className="film-label">{m.type === "video" ? "Watch" : "View"}</span></span>
+              <span className="film-sweep"></span>
+              <span className="film-corner tl"></span><span className="film-corner tr"></span><span className="film-corner bl"></span><span className="film-corner br"></span>
+            </button>
+          </div>
         ))}
       </div>
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+      <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
         <button onClick={() => setPage(page - 1)} disabled={page === 0} className={pill}>Prev</button>
         {Array.from({ length: pages }, (_, n) => (<button key={n} onClick={() => setPage(n)} className={"h-10 w-10 rounded-full border text-sm transition-colors " + (n === page ? "border-datiz-gold bg-datiz-gold text-datiz-teal" : "border-datiz-gold/50 text-datiz-gold hover:bg-datiz-gold/20")}>{n + 1}</button>))}
         <button onClick={() => setPage(page + 1)} disabled={page >= pages - 1} className={pill}>Next</button>
       </div>
       {open !== null && (
-        <div className="lightbox-backdrop fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4" onClick={() => setOpen(null)}>
+        <div className="film-backdrop fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4" onClick={() => setOpen(null)}>
           <button onClick={() => setOpen(null)} aria-label="Close" className="absolute right-5 top-4 text-4xl text-datiz-gold">×</button>
           <button onClick={(e) => { e.stopPropagation(); step(-1); }} aria-label="Previous" className="absolute left-3 text-5xl text-datiz-gold md:left-8">‹</button>
-          <div key={open} onClick={(e) => e.stopPropagation()} className="lightbox-item max-h-full max-w-5xl">
-            {media[open].type === "video" ? (<video src={media[open].src} controls autoPlay playsInline className="max-h-[85vh] max-w-full"></video>) : (<img src={media[open].src} alt="DATIŽ event" className="max-h-[85vh] max-w-full object-contain" />)}
+          <div key={open} onClick={(e) => e.stopPropagation()} className="film-pop max-h-full max-w-5xl">
+            {media[open].type === "video" ? (<video src={media[open].src} controls autoPlay playsInline className="max-h-[80vh] max-w-full"></video>) : (<img src={media[open].src} alt="DATIŽ event" className="max-h-[80vh] max-w-full object-contain" />)}
           </div>
           <button onClick={(e) => { e.stopPropagation(); step(1); }} aria-label="Next" className="absolute right-3 text-5xl text-datiz-gold md:right-8">›</button>
           <p className="absolute bottom-4 text-sm tracking-widest text-datiz-ivory/70">{open + 1} / {media.length}</p>
