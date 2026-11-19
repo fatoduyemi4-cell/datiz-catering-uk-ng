@@ -39,6 +39,7 @@ export default function QuotePage() {
           </div>
           <input name="guest_count" type="number" min="1" required placeholder="Number of guests" className={field} />
           <textarea name="message" rows={5} placeholder="Tell us more about your event" className={field} />
+          <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
           <button type="submit" disabled={status === "sending"} className="btn-primary">{status === "sending" ? "Sending..." : "Send Enquiry"}</button>
           {status === "sent" && <p className="text-datiz-gold">Thank you. Your enquiry has been sent.</p>}
           {status === "error" && <p className="text-red-300">Something went wrong. Please message us on WhatsApp: +44 7738 884720.</p>}
