@@ -30,7 +30,7 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-6 py-24">
         <h2 className="reveal mb-14 text-center font-serif text-4xl text-datiz-gold md:text-5xl">What We Do</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s, idx) => (<div key={s.n} style={{ animationDelay: idx * 130 + "ms" }} className="reveal svc-card group overflow-hidden border border-datiz-gold/20"><div className="aspect-[4/3] w-full overflow-hidden bg-black/20">{s.v ? (<video src={s.m} autoPlay muted loop playsInline className="h-full w-full object-cover"></video>) : (<img src={s.m} alt={s.t} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />)}</div><div className="p-8"><p className="mb-4 font-serif text-3xl text-datiz-gold/60">{s.n}</p><h3 className="mb-3 font-serif text-2xl">{s.t}</h3><p className="text-sm leading-relaxed text-datiz-ivory/70">{s.d}</p></div></div>))}
+          {services.map((s, idx) => (<div key={s.n} style={{ animationDelay: idx * 130 + "ms" }} className="reveal svc-card group overflow-hidden border border-datiz-gold/20"><div className="aspect-4/3 w-full overflow-hidden bg-black/20">{s.v ? (<video src={s.m} autoPlay muted loop playsInline className="h-full w-full object-cover"></video>) : (<img src={s.m} alt={s.t} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />)}</div><div className="p-8"><p className="mb-4 font-serif text-3xl text-datiz-gold/60">{s.n}</p><h3 className="mb-3 font-serif text-2xl">{s.t}</h3><p className="text-sm leading-relaxed text-datiz-ivory/70">{s.d}</p></div></div>))}
         </div>
       </section>
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-24 md:grid-cols-2">
@@ -42,7 +42,7 @@ export default function Home() {
           </Link>
           <Link href="/quote" className="btn-outline">Request a Quote</Link>
         </div>
-        <div className="reveal-zoom relative aspect-[4/5] w-full md:w-4/5 md:justify-self-end overflow-hidden border border-datiz-gold/30 bg-black/20">
+        <div className="reveal-zoom relative aspect-4/5 w-full md:w-4/5 md:justify-self-end overflow-hidden border border-datiz-gold/30 bg-black/20">
           <div className="absolute inset-0 flex items-center justify-center text-sm uppercase tracking-[0.2em] text-datiz-ivory/40">Caterer photo</div>
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(/caterer.webp)" }}></div>
         </div>
@@ -56,6 +56,7 @@ export default function Home() {
     </main>
   );
 }
+
 
 
 
