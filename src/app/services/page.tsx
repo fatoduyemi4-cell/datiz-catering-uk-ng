@@ -15,7 +15,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-3xl">
           <h1 className="hero-rise font-serif text-5xl leading-tight text-datiz-ivory md:text-7xl">Event Planning <span className="italic text-datiz-gold">Services</span></h1>
           <div className="hero-rise hero-d1"><Orn /></div>
-          <p className="hero-rise hero-d2 mx-auto mt-10 max-w-3xl font-serif text-xl italic leading-relaxed text-datiz-ivory/90 md:text-2xl">From family celebrations to corporate events, I can help you plan your event from start to finish or step in where you need support.</p>
+          <p className="hero-rise hero-d2 mx-auto mt-10 max-w-3xl font-serif text-xl italic leading-relaxed text-datiz-ivory/90 md:text-2xl">From family celebrations to corporate events, we can help you plan your event from start to finish or step in where you need support.</p>
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-6 py-24">
@@ -50,4 +50,5 @@ export default function ServicesPage() {
     </main>
   );
 }
+
 
