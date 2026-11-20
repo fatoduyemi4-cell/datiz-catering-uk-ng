@@ -1,18 +1,25 @@
 "use client";
 import { useState } from "react";
 const eventTypes = ["Wedding", "Birthday", "Corporate event", "Canapé reception", "Decoration only", "Other"];
+const formatDate = (v: string) => { const d = v.replace(/\D/g, "").slice(0, 8); if (d.length > 4) return d.slice(0, 2) + "/" + d.slice(2, 4) + "/" + d.slice(4); if (d.length > 2) return d.slice(0, 2) + "/" + d.slice(2); return d; };
+const validDate = (v: string) => { const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(v); if (!m) return false; const dd = Number(m[1]); const mm = Number(m[2]); const yy = Number(m[3]); const dt = new Date(yy, mm - 1, dd); const today = new Date(); today.setHours(0, 0, 0, 0); return dt.getFullYear() === yy && dt.getMonth() === mm - 1 && dt.getDate() === dd && dt >= today; };
 export default function QuotePage() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error" | "baddate">("idle");
+  const [eventDate, setEventDate] = useState("");
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!validDate(eventDate)) { setStatus("baddate"); return; }
     setStatus("sending");
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
     try {
-      const res = await fetch("/api/enquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-      if (!res.ok) throw new Error("Failed");
+      if (data.website) { setStatus("sent"); form.reset(); setEventDate(""); return; }
+      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ ...data, access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY, subject: "New DATIŽ quote request: " + data.event_type + " - " + data.name, from_name: "DATIŽ Website" }) });
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error("Failed");
       setStatus("sent");
       form.reset();
+      setEventDate("");
     } catch {
       setStatus("error");
     }
@@ -35,13 +42,14 @@ export default function QuotePage() {
               <option value="" disabled className="text-black">Event type</option>
               {eventTypes.map((t) => (<option key={t} value={t} className="text-black">{t}</option>))}
             </select>
-            <input name="event_date" type="date" required className={field} />
+            <input name="event_date" type="text" required inputMode="numeric" autoComplete="off" maxLength={10} placeholder="Event date (DD/MM/YYYY)" value={eventDate} onChange={(e) => setEventDate(formatDate(e.target.value))} className={field} />
           </div>
           <input name="guest_count" type="number" min="1" required placeholder="Number of guests" className={field} />
           <textarea name="message" rows={5} placeholder="Tell us more about your event" className={field} />
-          <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
+          <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 opacity-0" />
           <button type="submit" disabled={status === "sending"} className="btn-primary">{status === "sending" ? "Sending..." : "Send Enquiry"}</button>
           {status === "sent" && <p className="text-datiz-gold">Thank you. Your enquiry has been sent.</p>}
+          {status === "baddate" && <p className="text-red-300">Please enter a valid date that is today or later, written as DD/MM/YYYY, for example 25/12/2026.</p>}
           {status === "error" && <p className="text-red-300">Something went wrong. Please message us on WhatsApp: +44 7738 884720.</p>}
         </form>
       </div>

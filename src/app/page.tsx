@@ -35,9 +35,11 @@ export default function Home() {
       </section>
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-24 md:grid-cols-2">
         <div>
-          <p className="mb-4 text-sm uppercase tracking-[0.35em] text-datiz-gold">The Caterer</p>
-          <h2 className="mb-6 font-serif text-4xl text-datiz-gold md:text-5xl">Meet Your Caterer</h2>
-          <p className="mb-8 leading-relaxed text-datiz-ivory/70">Introduction text goes here.</p>
+          <Link href="/about" className="planner-link reveal mb-10">
+            <h2 className="planner-title font-serif text-4xl md:text-6xl">Meet Your Event Planner</h2>
+            <span className="planner-line"></span>
+            <span className="planner-cue">Read the introduction <span className="planner-arrow">→</span></span>
+          </Link>
           <Link href="/quote" className="btn-outline">Request a Quote</Link>
         </div>
         <div className="reveal-zoom relative aspect-[4/5] w-full md:w-4/5 md:justify-self-end overflow-hidden border border-datiz-gold/30 bg-black/20">

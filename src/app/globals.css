@@ -17,10 +17,10 @@
 }
 @layer components {
   .btn-primary {
-    @apply bg-datiz-gold text-datiz-teal font-semibold px-8 py-3 hover:bg-datiz-ivory transition-colors duration-300 uppercase tracking-widest text-sm;
+    @apply bg-datiz-gold text-datiz-teal font-semibold px-8 py-3 hover:bg-datiz-ivory transition-colors duration-300 uppercase tracking-widest text-sm rounded-full;
   }
   .btn-outline {
-    @apply border border-datiz-gold text-datiz-gold px-8 py-3 hover:bg-datiz-gold hover:text-datiz-teal transition-colors duration-300 uppercase tracking-widest text-sm;
+    @apply border border-datiz-gold text-datiz-gold px-8 py-3 hover:bg-datiz-gold hover:text-datiz-teal transition-colors duration-300 uppercase tracking-widest text-sm rounded-full;
   }
 }
 /* Elegant Fade-in Animations */
@@ -97,3 +97,28 @@
 .btn-primary:hover, .btn-outline:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -8px rgba(200, 169, 110, 0.5); }
 .menu-drop { animation: menuDrop 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
 @media (prefers-reduced-motion: reduce) { .hero-rise, .hero-name, .hero-line, .reveal.in, .reveal-zoom.in, .menu-drop { animation: none; } .rv .reveal:not(.in), .rv .reveal-zoom:not(.in) { opacity: 1; } }
+/* Event planner link and elegant services */
+@keyframes plannerNudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(7px); } }
+@keyframes plannerNudgeFast { 0%, 100% { transform: translateX(4px); } 50% { transform: translateX(16px); } }
+@keyframes plannerShine { from { background-position: 100% 0; } to { background-position: 0 0; } }
+.planner-link { display: block; width: fit-content; text-decoration: none; }
+.planner-title { display: block; color: #C8A96E; line-height: 1.1; transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) { .planner-title { background-image: linear-gradient(100deg, #C8A96E 0%, #C8A96E 38%, #F5EFE4 50%, #C8A96E 62%, #C8A96E 100%); background-size: 260% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; } }
+.planner-link:hover .planner-title { transform: translateX(10px); animation: plannerShine 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.planner-line { display: block; width: 4rem; height: 1px; margin: 1.4rem 0 1.2rem; background: #C8A96E; transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+.planner-link:hover .planner-line { width: 100%; }
+.planner-cue { display: flex; align-items: center; gap: 0.6rem; color: rgba(245, 239, 228, 0.85); letter-spacing: 0.05em; transition: letter-spacing 0.6s ease, color 0.4s ease; }
+.planner-link:hover .planner-cue { letter-spacing: 0.14em; color: #C8A96E; }
+.planner-arrow { display: inline-block; animation: plannerNudge 2.2s ease-in-out infinite; }
+.planner-link:hover .planner-arrow { animation: plannerNudgeFast 0.8s ease-in-out infinite; }
+.svc-row { position: relative; display: flex; align-items: baseline; gap: 1.25rem; padding: 1.15rem 0; border-bottom: 1px solid rgba(200, 169, 110, 0.2); transition: padding-left 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.svc-row::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 0; height: 1px; background: #C8A96E; transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+.svc-row:hover { padding-left: 0.9rem; } .svc-row:hover::after { width: 100%; }
+.svc-num { min-width: 2.4rem; font-family: var(--font-playfair), serif; font-size: 0.95rem; letter-spacing: 0.15em; color: rgba(200, 169, 110, 0.6); transition: color 0.4s ease; }
+.svc-row:hover .svc-num, .help-row:hover .svc-num { color: #C8A96E; }
+.help-row { position: relative; display: grid; gap: 0.9rem 3rem; padding: 2.2rem 0; border-top: 1px solid rgba(200, 169, 110, 0.25); transition: padding-left 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.6s ease; }
+@media (min-width: 768px) { .help-row { grid-template-columns: 1fr 1.5fr; align-items: baseline; } }
+.help-row:hover { padding-left: 1.1rem; background: linear-gradient(90deg, rgba(200, 169, 110, 0.08), transparent 70%); }
+.cta-frame { outline: 1px solid rgba(200, 169, 110, 0.22); outline-offset: 10px; }
+@media (prefers-reduced-motion: reduce) { .planner-arrow, .planner-link:hover .planner-arrow, .planner-link:hover .planner-title { animation: none; } }
+
