@@ -1,3 +1,4 @@
+import AboutToyin from "@/components/AboutToyin";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import Socials from "@/components/Socials";
 import Navbar from "@/components/Navbar";
@@ -35,11 +36,7 @@ export default function Home() {
       </section>
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-24 md:grid-cols-2">
         <div>
-          <Link href="/about" className="planner-link reveal mb-10">
-            <h2 className="planner-title font-serif text-4xl md:text-6xl">Meet Your Event Planner</h2>
-            <span className="planner-line"></span>
-            <span className="planner-cue">Read the introduction <span className="planner-arrow">→</span></span>
-          </Link>
+          <AboutToyin />
           <Link href="/quote" className="btn-outline">Request a Quote</Link>
         </div>
         <div className="reveal-zoom relative aspect-4/5 w-full md:w-4/5 md:justify-self-end overflow-hidden border border-datiz-gold/30 bg-black/20">
